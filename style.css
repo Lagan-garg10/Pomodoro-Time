@@ -211,7 +211,7 @@ header i {
     margin-top: 4%;
 }
 
-.toDoListHeader .fa-xmark {
+#closeTaskOverlay {
     font-size: 35px;
     cursor: pointer;
 }

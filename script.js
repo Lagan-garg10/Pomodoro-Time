@@ -12,6 +12,7 @@ var standardPomodoroTime = localStorage.getItem('standardPomodoroTime') || '20:0
 var standardLongBreakTime = localStorage.getItem('standardLongBreakTime') || '15:00'
 var standardShortBreakTime = localStorage.getItem('standardShortBreakTime') || '05:00'
 var test = ''
+var isUserAllowedCHangeTab = true
 
 var alarmAudio = document.getElementById('alarmAudio')
 alarm.setAttribute('src', localStorage.getItem('alarm') || 'alarm.mp3')
@@ -32,6 +33,7 @@ let audio = new Audio();
 // function to start pomodoro time
 function startPomodoro() {
     isTimerStart = true
+    isUserAllowedCHangeTab = false
     document.getElementById('start-btn').innerHTML = 'STOP'
     timerInterval = setInterval(() => {
         if (PomodoroTime > 0) {
@@ -52,6 +54,7 @@ function startPomodoro() {
 
 // function to start short break
 function startShortBreak() {
+    isUserAllowedCHangeTab = false
     isShortBreakStart = true
     document.getElementById('start-btn').innerHTML = 'STOP'
     timerInterval = setInterval(() => {
@@ -73,6 +76,7 @@ function startShortBreak() {
 
 // function to start long break
 function startLongBreak() {
+    isUserAllowedCHangeTab = false
     isLongBreakStart = true
     document.getElementById('start-btn').innerHTML = 'STOP'
     timerInterval = setInterval(() => {
@@ -118,6 +122,7 @@ function resetAll() {
     localStorage.setItem('noOfShortBreak', noOfShortBreak)
     localStorage.setItem('noOfLongBreak', noOfLongBreak)
 
+    isUserAllowedCHangeTab = true
     isTimerStart = false
     isShortBreakStart = false
     isLongBreakStart = false
@@ -535,6 +540,11 @@ function attachEventListeners() {
             saveToLocalStorage();
         });
     });
+
+    document.getElementById('closeTaskOverlay').addEventListener('click', () => {
+        console.log("Button clicked!");
+        document.getElementById('Taskoverlay').style.display = 'none'
+    })
 }
 
 // Function to play a track
@@ -591,9 +601,9 @@ document.getElementById('addNewTodo').addEventListener('click', () => {
 document.getElementById('taskList').addEventListener('click', () => {
     document.getElementById('Taskoverlay').style.display = 'block'
 })
-
 // event listener to close task main div
 document.getElementById('closeTaskOverlay').addEventListener('click', () => {
+    console.log("Button clicked!");
     document.getElementById('Taskoverlay').style.display = 'none'
 })
 
@@ -610,35 +620,41 @@ document.getElementById('addTaskButton').addEventListener('click', () => {
 
 // event listener to change UI when click on short break tab
 document.getElementById('shortBreakStart').addEventListener('click', () => {
-    document.getElementById('time-left').innerHTML = standardShortBreakTime
-    selectedTab = 'shortBreak'
-    document.getElementById('shortBreakStart').classList.add('active')
-    document.getElementById('pomodoroTime').classList.remove('active')
-    document.getElementById('longBreakTime').classList.remove('active')
-    document.body.style.backgroundColor = 'steelblue'
-    document.body.style.backgroundImage = 'none'
+    if (isUserAllowedCHangeTab == true) {
+        document.getElementById('time-left').innerHTML = standardShortBreakTime
+        selectedTab = 'shortBreak'
+        document.getElementById('shortBreakStart').classList.add('active')
+        document.getElementById('pomodoroTime').classList.remove('active')
+        document.getElementById('longBreakTime').classList.remove('active')
+        document.body.style.backgroundColor = 'steelblue'
+        document.body.style.backgroundImage = 'none'
+    }
 })
 
 // event listener to change UI when click on long break tab
 document.getElementById('longBreakTime').addEventListener('click', () => {
-    document.getElementById('time-left').innerHTML = standardLongBreakTime
-    selectedTab = 'longBreak'
-    document.getElementById('longBreakTime').classList.add('active')
-    document.getElementById('pomodoroTime').classList.remove('active')
-    document.getElementById('shortBreakStart').classList.remove('active')
-    document.body.style.backgroundColor = 'steelblue'
-    document.body.style.backgroundImage = 'none'
+    if (isUserAllowedCHangeTab == true) {
+        document.getElementById('time-left').innerHTML = standardLongBreakTime
+        selectedTab = 'longBreak'
+        document.getElementById('longBreakTime').classList.add('active')
+        document.getElementById('pomodoroTime').classList.remove('active')
+        document.getElementById('shortBreakStart').classList.remove('active')
+        document.body.style.backgroundColor = 'steelblue'
+        document.body.style.backgroundImage = 'none'
+    }
 })
 
 // event listener to change UI when click on  pomodoro time tab
 document.getElementById('pomodoroTime').addEventListener('click', () => {
-    document.getElementById('time-left').innerHTML = standardPomodoroTime
-    selectedTab = 'pomodoroTime'
-    document.getElementById('pomodoroTime').classList.add('active')
-    document.getElementById('shortBreakStart').classList.remove('active')
-    document.getElementById('longBreakTime').classList.remove('active')
-    document.body.style.backgroundColor = 'none'
-    document.body.style.backgroundImage = 'url("https://app.pomodorotimer.online/_nuxt/img/1_colorful-women.c624b77.webp")'
+    if (isUserAllowedCHangeTab == true) {
+        document.getElementById('time-left').innerHTML = standardPomodoroTime
+        selectedTab = 'pomodoroTime'
+        document.getElementById('pomodoroTime').classList.add('active')
+        document.getElementById('shortBreakStart').classList.remove('active')
+        document.getElementById('longBreakTime').classList.remove('active')
+        document.body.style.backgroundColor = 'none'
+        document.body.style.backgroundImage = 'url("https://app.pomodorotimer.online/_nuxt/img/1_colorful-women.c624b77.webp")'
+    }
 })
 
 // event listener to add both change alarm function on both button
@@ -809,11 +825,11 @@ document.getElementById("volumeControl").addEventListener("input", () => {
     audio.volume = volumeControl.value
 })
 
-document.getElementById('audio').addEventListener('click',()=>{
-    if(document.getElementById('mixContainer').style.display == 'block'){
+document.getElementById('audio').addEventListener('click', () => {
+    if (document.getElementById('mixContainer').style.display == 'block') {
         document.getElementById('mixContainer').style.display = 'none'
     }
-    else{
+    else {
         document.getElementById('mixContainer').style.display = 'block'
     }
 })
