@@ -1,0 +1,18 @@
+{
+    "manifest_version": 3,
+    "name": "Pomodoro timer",
+    "version": "1.0.0",
+    "host_permissions": [
+        "<all_urls>"
+    ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "permissions":[
+        "tabs",
+        "windows"
+    ],
+    "action": {
+        "default_title": "Open Fullscreen"
+    }
+}
