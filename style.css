@@ -1,0 +1,692 @@
+:root {
+    --bg-color-light: #ffffff;
+    --text-color-light: #000000;
+    --bg-color-dark: #121212;
+    --text-color-dark: #ffffff;
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --highlight-color: #ffc107;
+    --tw-bg: 0.6
+}
+
+body {
+    font-family: Arial, sans-serif;
+    padding-top: 1rem;
+    color: var(--text-color-dark);
+    background-image: url('https://app.pomodorotimer.online/_nuxt/img/1_colorful-women.c624b77.webp');
+    background-size: cover;
+    overflow: hidden;
+    /* background-color: black; */
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+header i {
+    font-size: 30px;
+    margin-top: -30px;
+    position: absolute;
+    margin-left: 90%;
+}
+
+.main-content {
+    text-align: center;
+    padding: 2rem;
+    width: 100vw;
+    margin-top: -7.2%;
+}
+
+.status {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0 1rem 0;
+}
+
+.status span {
+    font-size: 1.2rem;
+}
+
+.active {
+    background-color: rgba(4, 6, 20, 0.25);
+    backdrop-filter: blur(20px);
+    padding: 10px 20px;
+}
+
+.layout {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.timer {
+    margin: 2rem 0;
+    height: 300px;
+    width: 300px;
+    font-size: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0px;
+}
+
+.timer h3 {
+    color: var(--text-color-dark);
+    margin: 0;
+}
+
+#mantra {
+    height: 100px;
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.start-btn,
+.audio,
+.taskList {
+    padding: 1rem 1rem;
+    background-color: rgba(4, 6, 20, 0.25);
+    color: #fff;
+    border: none;
+    border-radius: 100%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    height: 100px;
+    width: 100px;
+    margin-top: -1.5%;
+    border: 0.5px solid white;
+}
+
+.audio,
+.taskList {
+    height: 70px;
+    width: 70px;
+    backdrop-filter: blur(20px);
+}
+
+.full-content {
+    display: flex;
+    justify-content: center;
+}
+
+/* dropdown styling */
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #ffffff;
+    min-width: 200px;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+.dropdown button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.dropdown button:hover {
+    background-color: rgb(243 244 246);
+    padding: 0 5px 5px 5px;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #555;
+    border-bottom: 1px solid #eee;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f0f0f0;
+}
+
+.dropdown-menu a:last-child {
+    border-bottom: none;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Task overlay styling */
+
+#Taskoverlay {
+    position: fixed;
+    top: 0;
+    left: 23%;
+    width: 900px;
+    height: 100vh;
+    background-color: white;
+    color: #000000;
+    display: none;
+    overflow: scroll;
+}
+
+
+.toDoListHeader {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.toDoListHeader div {
+    display: flex;
+    font-size: 20px;
+}
+
+
+.toDoListHeader div i {
+    font-size: 35px;
+    margin-right: 20px;
+}
+
+.toDoListHeader div h3 {
+    margin-top: 4%;
+}
+
+.toDoListHeader .fa-xmark {
+    font-size: 35px;
+    cursor: pointer;
+}
+
+.toDoList {
+    display: flex;
+}
+
+.todoList_Tasks {
+    margin-top: 20px;
+}
+
+.toDoListNameContainer {
+    margin: 0 20px;
+    padding: 0 10px;
+    border-radius: 10px;
+    width: 85%;
+    background-color: rgb(243 244 246);
+    display: flex;
+    gap: 1rem;
+}
+
+.todoListColour {
+    margin-top: 17px;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+}
+
+.allTask {
+    margin-left: 10%;
+    margin-top: 1%;
+}
+
+.allTask .task {
+    display: flex;
+    border: 1px solid grey;
+    border-radius: 10px;
+    padding-left: 10px;
+    align-items: center;
+    width: 90%;
+    margin-bottom: 10px;
+}
+
+.allTask .task input {
+    height: 30px;
+    width: 30px;
+    border-radius: 100%;
+    margin-right: 20px;
+}
+
+.allTask .task .dropdown button {
+    margin-left: 40vw;
+    background-color: rgb(243 244 246);
+    text-align: center;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    padding-bottom: 40px;
+}
+
+.add-task {
+    display: block;
+    width: 90%;
+    padding: 25px;
+    margin-left: 2.5%;
+    border: 1px dashed grey;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: justify;
+    background-color: transparent;
+    box-shadow: inset 5px -2px 4px 10px rgb(243 244 246);
+}
+
+.add-task:hover {
+    background-color: #f0f0f0;
+}
+
+#addTodooverlay,
+#addTaskOverlay {
+    position: fixed;
+    top: 0;
+    left: 23%;
+    width: 900px;
+    height: 50vh;
+    width: 40vw;
+    background-color: white;
+    color: #000000;
+    display: none;
+    overflow: scroll;
+    margin-top: 10%;
+    margin-left: 10%;
+    border-radius: 20px;
+}
+
+#addTodooverlay #addTodooverlayHeader,
+#addTaskOverlay #addTaskOverlayHeader {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 20px;
+}
+
+#addTodooverlay #addTodooverlayHeader i,
+#addTaskOverlay #addTaskOverlayHeader i {
+    font-size: 25px;
+    margin-top: 15px;
+}
+
+#addTodooverlay label,
+#addTaskOverlay label {
+    display: block;
+    font-size: 20px;
+    margin-left: 20%;
+    margin-top: 5%;
+}
+
+#addTodooverlay input,
+#addTaskOverlay input {
+    margin-left: 20%;
+    margin-top: 1%;
+    width: 60%;
+    font-size: 23px;
+    padding: 10px 10px;
+    background-color: rgb(243 244 246);
+}
+
+#addTodooverlay button,
+#addTaskOverlay button {
+    font-size: 18px;
+    display: block;
+    padding: 10px 40px;
+    background-color: rgb(243 244 246);
+    color: black;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+}
+
+#addTodooverlay .addTodooverlaybuttons,
+#addTaskOverlay .addTaskOverlaybuttons {
+    display: flex;
+    gap: 2rem;
+    margin-left: 40%;
+    margin-top: 10%;
+}
+
+#addTodooverlay .addTodooverlaybuttons button:last-child,
+#addTaskOverlay .addTaskOverlaybuttons button:last-child {
+    background-color: rgb(55 65 81);
+    color: white;
+}
+
+.completeTask {
+    text-decoration: line-through;
+    background-color: rgb(229 231 235 / var(--tw-bg))
+}
+
+
+#navbar {
+    height: 370px;
+    width: 450px;
+    border-radius: 60px;
+    background-color: white;
+    position: fixed;
+    top: -50px;
+    right: -30px;
+    color: black;
+    display: none;
+}
+
+#navbar i {
+    font-size: 25px;
+    margin-left: 350px;
+    margin-top: 70px;
+    position: absolute;
+}
+
+#navbar ul {
+    list-style: none;
+    margin-top: 30%;
+}
+
+#navbar li:hover {
+    background-color: rgb(243 244 246);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#navbar li {
+    margin-bottom: 20px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#concentrationTime {
+    /* height: 120vh; */
+    width: 450px;
+    border-radius: 60px;
+    background-color: white;
+    position: fixed;
+    top: -50px;
+    right: -30px;
+    color: black;
+    padding-top: 70px;
+    padding-left: 30px;
+    overflow: scroll;
+    display: none;
+    /* overflow-y: scroll;
+    overflow-x: scroll; */
+}
+
+#concentrationTimeHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+#concentrationTimeHeader div {
+    display: flex;
+    gap: 1rem;
+}
+
+.concentration-times {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.concentration-times .concentration-time h3 {
+    color: rgb(148, 147, 147);
+}
+
+.concentration-times .concentration-time div {
+    display: flex;
+    gap: 1rem;
+    margin-left: -2rem;
+}
+
+.concentration-times .concentration-time div input {
+    height: 20px;
+    width: 20px;
+    margin-top: 30px;
+}
+
+#alarm {
+    height: 350px;
+    width: 450px;
+    border-radius: 60px;
+    background-color: white;
+    position: fixed;
+    top: -70px;
+    right: -30px;
+    color: black;
+    padding-top: 70px;
+    padding-left: 30px;
+    display: none;
+    /* background-color: rgba(4, 6, 20, 0.25); */
+}
+
+#alarmHeader #alarmCloseButton {
+    margin-left: 80%;
+    position: absolute;
+    font-size: 20px;
+}
+
+#alarmHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+#alarmHeader div {
+    display: flex;
+    gap: 1rem;
+}
+
+#soundButtons button {
+    background-color: transparent;
+    font-size: 22px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+
+#soundButtons {
+    margin-bottom: 50px;
+}
+
+input {
+    width: 25vw;
+}
+
+#customTimeMainDiv {
+    display: flex;
+    gap: 1rem;
+    margin-left: -100px;
+}
+
+#customTimeMainDiv input {
+    height: 20px;
+    width: 20px;
+    margin-top: 30px;
+}
+
+.concentration-time-custom {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#customTimeSelectionDiv div {
+    display: flex;
+    color: #6c757d;
+    gap: 5.5rem;
+}
+
+#customTimeSelectionDiv {
+    margin-left: 100px;
+}
+
+#customTimeSelectionDiv input {
+    width: 18vw;
+}
+
+#autoStart {
+    height: 250px;
+    width: 450px;
+    border-radius: 60px;
+    background-color: white;
+    position: fixed;
+    top: -70px;
+    right: -30px;
+    color: black;
+    padding-top: 100px;
+    padding-left: 30px;
+    display: none;
+}
+
+#autoStartHeader {
+    display: flex;
+    justify-content: space-around;
+    /* margin-top: 10px; */
+}
+
+#autoStart ul {
+    list-style: none;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 60px;
+}
+
+#autoStart ul li {
+    margin-bottom: 20px;
+}
+
+#autoStartHeader div {
+    margin-left: -100px;
+}
+
+#autoStartHeader div h3 {
+    margin-left: 100px;
+    margin-top: -10px;
+}
+
+#autoStart ul li input {
+    margin-left: -150px;
+    margin-top: 3px;
+    position: absolute;
+    height: 20px;
+}
+
+
+button {
+    cursor: pointer;
+}
+
+#showMixesButton {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+#showMixesButton:hover {
+    background-color: #0056b3;
+}
+
+#mixContainer {
+    margin-top: -500px;
+    margin-left: 200px;
+    display: none;
+    width: 300px;
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#mixContainer h3 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.mix {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.mix img {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.mix p {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.mix input[type="radio"] {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.controls {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.controls button,
+.controls input[type="range"] {
+    margin-bottom: 10px;
+}
+
+.controls button {
+    padding: 8px 12px;
+    font-size: 14px;
+    color: white;
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    flex: 1 0 calc(50% - 10px);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.controls button:hover {
+    background-color: #218838;
+}
+
+.controls input[type="range"] {
+    flex: 1 0 100%;
+    margin: 0 auto;
+}
+
+label {
+    font-size: 12px;
+    color: #777;
+}

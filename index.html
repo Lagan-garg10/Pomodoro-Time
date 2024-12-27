@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="header">
+        <h1>Pomodoro Timer</h1>
+        <i id="hamBurgerIcon" class="fa-solid fa-bars"></i>
+    </header>
+    <div class="full-content">
+        <div class="main-content">
+            <div class="status">
+                <span id="pomodoroTime" class="active">Pomodoro <b id="noOfPomodoro"></b></span>
+                <span id="shortBreakStart">breaks <b id="noOfShortBreaks"></b></span>
+                <span id="longBreakTime">Long breaks <b id="noOfLongBreaks"></b></span>
+            </div>
+            <div class="layout">
+                <div class="timer">
+                    <h3 id="time-left"></h3>
+                </div>
+            </div>
+            <div id="mantra">
+                “One small positive thought in the <br> morning can change your whole day”.
+            </div>
+            <button class="audio"><i id="audio" class="fa-solid fa-music"></i></button>
+            <button class="start-btn" id="start-btn">START</button>
+            <button class="taskList" id="taskList"><i class="fa-solid fa-list-check"></i></button>
+        </div>
+    </div>
+    <div id="Taskoverlay">
+        <div class="toDoListHeader">
+            <div>
+                <i class="fa-solid fa-list-check"></i>
+                <h3>Todo List</h3>
+            </div>
+            <i class="fa-solid fa-xmark" id="closeTaskOverlay"></i>
+        </div>
+        <div id="backlog" class="todoList_Tasks">
+            <div class="toDoList">
+                <div class="toDoListNameContainer">
+                    <div class="todoListColour"></div>
+                    <h3 class="todoListName">Backlog</h3>
+                </div>
+                <div class="dropdown">
+                    <button>...</button>
+                    <div class="dropdown-menu">
+                        <a id="HideCompleteTask">Hide completed tasks</a>
+                        <a id="removePendingTask">Remove pending tasks</a>
+                        <a id="removeCompletedTask">Remove completed tasks</a>
+                        <a id="addNewTodo">Add new to-do list</a>
+                    </div>
+                </div>
+            </div>
+            <div class="allTask">
+
+            </div>
+            <button class="add-task backlog" id="add-task"><i class="fa-solid fa-plus"></i> Add New Task</button>
+        </div>
+    </div>
+
+    <div id="addTodooverlay">
+        <div id="addTodooverlayHeader">
+            <h3>Add Todo List</h3>
+            <i class="fa-solid fa-xmark" id="closeOverlay2"></i>
+        </div>
+        <label for="todoName">Name:</label>
+        <input type="text" name="todoName" id="todoNameInput">
+        <div class="addTodooverlaybuttons">
+            <button>Cancel</button>
+            <button id="addTodoList">Save</button>
+        </div>
+    </div>
+
+    <div id="addTaskOverlay">
+        <div id="addTaskOverlayHeader">
+            <h3>Add New Task</h3>
+            <i class="fa-solid fa-xmark" id="closeOverlay3"></i>
+        </div>
+        <label for="taskName">Name:</label>
+        <input type="text" name="taskName" id="taskNameInput">
+        <div class="addTaskOverlaybuttons">
+            <button>Cancel</button>
+            <button id="addTaskButton">Save</button>
+        </div>
+    </div>
+
+    <div id="navbar">
+        <i id="closeNavbarIcon" class="fa-solid fa-xmark"></i>
+        <ul>
+            <li id="concentrationTimeOpenIcon">Concentration Time</li>
+            <li id="alarmOpenIcon">Alarm</li>
+            <li id="autoStartIcon">Auto Start</li>
+        </ul>
+    </div>
+
+    <div id="concentrationTime">
+        <div id="concentrationTimeHeader">
+            <div>
+                <i id="backToNavbarIcon" class="fa-solid fa-arrow-left"></i>
+                <h3>concentration time</h3>
+            </div>
+            <i id="closeConcentrationTime" class="fa-solid fa-xmark"></i>
+        </div>
+        <div class="concentration-times">
+            <div class="concentration-time">
+                <div>
+                    <input type="checkbox" name="" class="concentration-time-checkbox" id="popular">
+                    <h2>popular</h2>
+                </div>
+                <h3>20 min Pomodoro</h3>
+                <h3>5 min Break</h3>
+                <h3>15 min Long Break</h3>
+            </div>
+            <!-- <div class="concentration-time">
+                <div>
+                    <input type="checkbox" name="" class="concentration-time-checkbox" id="medium">
+                    <h2>medium</h2>
+                </div>
+                <h3>40 min Pomodoro</h3>
+                <h3>8 min Break</h3>
+                <h3>20 min Long Break</h3>
+            </div>
+            <div class="concentration-time">
+                <div>
+                    <input type="checkbox" name="" class="concentration-time-checkbox" id="extended">
+                    <h2>extended</h2>
+                </div>
+                <h3>60 min Pomodoro</h3>
+                <h3>10 min Break</h3>
+                <h3>25 min Long Break</h3>
+            </div> -->
+            <div class="concentration-time-custom">
+                <div id="customTimeMainDiv">
+                    <input type="checkbox" name="" class="concentration-time-checkbox" id="custom">
+                    <h2>custom</h2>
+                </div>
+                <div id="customTimeSelectionDiv">
+                    <div>
+                        <h3>Pomodoro</h3>
+                        <h3 id="pomodoroCustomTime">50 min</h3>
+                    </div>
+                    <input type="range" min="0" max="6000" step="60" id="pomodoroCustomTimeSelected">
+                    <div>
+                        <h3>short Break</h3>
+                        <h3 id="shortBreakCustomTime">50 min</h3>
+                    </div>
+                    <input type="range" min="0" max="6000" step="60" id="shortBreakCustomTimeSelected">
+                    <div>
+                        <h3>long break</h3>
+                        <h3 id="longBreakCustomTime">50 min</h3>
+                    </div>
+                    <input type="range" min="0" max="6000" step="60" id="longBreakCustomTimeSelected">
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <div id="alarm">
+        <div id="alarmHeader">
+            <div>
+                <i id="backToNavbarIconAlarm" class="fa-solid fa-arrow-left"></i>
+                <h3>alarm</h3>
+            </div>
+            <i id="alarmCloseButton" class="fa-solid fa-xmark"></i>
+        </div>
+        <h3>Alarm on completion</h3>
+        <div id="soundButtons">
+            <button id="changeSoundButton1">sound 1</button>
+            <button id="changeSoundButton2">sound 2</button>
+        </div>
+    </div>
+
+    <div id="autoStart">
+        <div id="autoStartHeader">
+            <div>
+                <i id="backToNavbarIconAutoStart" class="fa-solid fa-arrow-left"></i>
+                <h3>Auto start</h3>
+            </div>
+            <i id="autoStartCloseButton" class="fa-solid fa-xmark"></i>
+        </div>
+        <div id="autoStartInputDiv">
+            <ul>
+                <li>
+                    Auto Start Pomodoros
+                    <input type="checkbox" name="" id="autoStartPomodoros">
+                </li>
+                <li>
+                    Auto start breaks
+                    <input type="checkbox" name="" id="autoStartBreak">
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="mixContainer">
+        <h3>Mixes</h3>
+        <div class="mix">
+          <input type="radio" name="mix" value="mix1" />
+          <img src="https://pomodorotimer.online/_nuxt/img/lofi.e78f25b.webp" alt="Mix 1">
+          <div>
+            <p>Title: Lofi</p>
+            <p>Tracks: 4</p>
+          </div>
+        </div>
+        <div class="mix">
+          <input type="radio" name="mix" value="mix2" />
+          <img src="https://pomodorotimer.online/_nuxt/img/nature.1963f1c.webp" alt="Mix 2">
+          <div>
+            <p>Title: Trap</p>
+            <p>Tracks: 3</p>
+          </div>
+        </div>
+        <div class="mix">
+          <input type="radio" name="mix" value="mix3" />
+          <img src="https://pomodorotimer.online/_nuxt/img/trap.ee24c55.webp" alt="Mix 3">
+          <div>
+            <p>Title: Nature</p>
+            <p>Tracks: 2</p>
+          </div>
+        </div>
+      
+        <div class="controls">
+          <button id="playButton">Play</button>
+          <button id="stopButton">Stop</button>
+          <button id="prevButton">Previous</button>
+          <button id="nextButton">Next</button>
+          <label for="volumeControl">Volume:</label>
+          <input type="range" id="volumeControl" min="0" max="1" step="0.1">
+        </div>
+      </div>
+    <audio id="alarmAudio" src="alarm1.mp3"></audio>
+</body>
+<script src="script.js"></script>
+<script src="https://kit.fontawesome.com/e0a600d3c5.js" crossorigin="anonymous"></script>
+
+</html>
