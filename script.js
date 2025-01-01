@@ -20,16 +20,6 @@ alarm.setAttribute('src', localStorage.getItem('alarm') || 'alarm.mp3')
 var isAutoPlayPomodoro = JSON.parse(localStorage.getItem('isAutoPlayPomodoro')) || false
 var isAutoPlayShortBreak = JSON.parse(localStorage.getItem('isAutoPlayShortBreak')) || true
 
-const mixes = {
-    mix1: ["lofi.mp3", "lofi2.mp3", "lofi3.mp3", "lofi4.mp3"],
-    mix2: ["trap1.mp3", "trap2.mp3", "trap3.mp3"],
-    mix3: ["nature1.mp3", "nature2.mp3"]
-};
-
-let currentMix = null;
-let currentTrackIndex = 0;
-let audio = new Audio();
-
 // function to start pomodoro time
 function startPomodoro() {
     isTimerStart = true
@@ -542,22 +532,16 @@ function attachEventListeners() {
     });
 
     document.getElementById('closeTaskOverlay').addEventListener('click', () => {
-        console.log("Button clicked!");
         document.getElementById('Taskoverlay').style.display = 'none'
     })
-}
 
-// Function to play a track
-function playTrack() {
-    audio.src = currentMix[currentTrackIndex];
-    audio.play();
-    audio.onended = () => {
-        // Automatically play the next track
-        if (currentTrackIndex < currentMix.length - 1) {
-            currentTrackIndex++;
-            playTrack();
-        }
-    };
+    document.getElementById('addNewTodo').addEventListener('click', () => {
+        document.getElementById('addTodooverlay').style.display = 'block'
+    })
+
+    document.getElementById('closeOverlay3').addEventListener('click',()=>{
+        document.getElementById('addTaskOverlay').style.display = 'none'
+    })
 }
 
 // alarmAudio.play()
@@ -603,7 +587,6 @@ document.getElementById('taskList').addEventListener('click', () => {
 })
 // event listener to close task main div
 document.getElementById('closeTaskOverlay').addEventListener('click', () => {
-    console.log("Button clicked!");
     document.getElementById('Taskoverlay').style.display = 'none'
 })
 
@@ -786,44 +769,6 @@ window.addEventListener('DOMContentLoaded', () => {
     initialization()
 })
 
-// Play the selected mix
-document.getElementById("playButton").addEventListener("click", () => {
-    const selectedMix = document.querySelector('input[name="mix"]:checked');
-    if (selectedMix) {
-        currentMix = mixes[selectedMix.value]
-        currentTrackIndex = 0
-        playTrack()
-    } else {
-        alert("Please select a mix to play!")
-    }
-})
-
-// Stop playback
-document.getElementById("stopButton").addEventListener("click", () => {
-    audio.pause()
-    audio.currentTime = 0
-})
-
-// Play the previous track
-document.getElementById("prevButton").addEventListener("click", () => {
-    if (currentMix && currentTrackIndex > 0) {
-        currentTrackIndex--
-        playTrack()
-    }
-})
-
-// Play the next track
-document.getElementById("nextButton").addEventListener("click", () => {
-    if (currentMix && currentTrackIndex < currentMix.length - 1) {
-        currentTrackIndex++
-        playTrack()
-    }
-})
-
-// Adjust volume
-document.getElementById("volumeControl").addEventListener("input", () => {
-    audio.volume = volumeControl.value
-})
 
 document.getElementById('audio').addEventListener('click', () => {
     if (document.getElementById('mixContainer').style.display == 'block') {
